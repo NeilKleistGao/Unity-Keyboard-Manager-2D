@@ -6,6 +6,8 @@ using UnityEngine.EventSystems;
 
 public class KeyboardReciever : MonoBehaviour
 {
+    [HideInInspector]
+    public KeyboardManager parent;
     private string key_name, key_value, last_value = "";
     private Text self;
     private bool editable = false;
@@ -13,6 +15,7 @@ public class KeyboardReciever : MonoBehaviour
     void Start()
     {
         self = GetComponent<Text>();
+        flush();
     }
 
     // Update is called once per frame
@@ -37,6 +40,7 @@ public class KeyboardReciever : MonoBehaviour
                 last_value = "";
                 setKey(code.ToString());
                 editable = false;
+                parent.modify(key_name, code);
             }
         }
     }
@@ -45,7 +49,6 @@ public class KeyboardReciever : MonoBehaviour
     {
         key_name = name;
         key_value = value;
-        flush();
     }
 
     public void setKey(string value)

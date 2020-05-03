@@ -14,8 +14,8 @@ namespace INIParse
 
         public INIParser(string filename, Dictionary<string, Section> default_data = null)
         {
-            filename = Application.persistentDataPath + "/" + filename;
-            path = filename;
+            path = Application.persistentDataPath + "/" + filename;
+            Debug.Log(path);
 
             if (!File.Exists(filename))
             {
@@ -92,7 +92,7 @@ namespace INIParse
                 content += "[" + section_name + "]\n";
                 foreach (string key in data[section_name].Keys)
                 {
-                    content += key + "=" + data[section_name][key];
+                    content += key + "=" + data[section_name][key] + "\n";
                 }
             }
 
